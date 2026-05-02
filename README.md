@@ -36,6 +36,27 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Deploying to GitHub Pages
+
+The app is hosted at: https://rohit010796.github.io/girlfriend-app/
+
+Every time you make changes and want to update the live site, run these commands:
+
+```bash
+ng build --base-href=/girlfriend-app/
+cp docs/index.html docs/404.html
+git add docs/
+git commit -m "build: update GitHub Pages deployment"
+git push origin main
+```
+
+GitHub Pages will automatically redeploy within a minute or two after the push.
+
+**Why these steps:**
+- `--base-href=/girlfriend-app/` — tells Angular the URL prefix so assets load correctly
+- `cp docs/index.html docs/404.html` — makes Angular router work when navigating directly to a URL
+- The build outputs to `docs/` (configured in `angular.json`) which is the folder GitHub Pages serves from
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
